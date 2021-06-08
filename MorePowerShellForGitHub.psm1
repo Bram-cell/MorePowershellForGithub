@@ -7,14 +7,3 @@ function Get-AuthHeader  {
     $headers = @{Authorization="Basic $auth"}
     Invoke-RestMethod -Headers $headers https://api.github.com
 }
-
-function Add-githubCollaborator {
-    param (
-        [System.Management.Automation.PSCredential]$Credentials,
-        [string]$Collaborator,
-        [string]$Repository
-    )
-    Get-AuthHeader($Credentials)
-    Get-GitHubRepository($Repository)
-
-}
