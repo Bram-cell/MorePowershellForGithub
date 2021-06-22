@@ -1,11 +1,12 @@
 function Get-AuthHeader  {
     param (
-        [System.Management.Automation.PSCredential]$Credentials
+        [String]$C
     )
-    Invoke-RestMethod -Uri ("https://api.github.com/user") -Credential $C
-    $auth = [System.Convert]::ToBase64String([char[]]$Creds.GetNetworkCredential().Password)
-    $headers = @{Authorization="Basic $auth"}
-    Invoke-RestMethod -Headers $headers https://api.github.com
+    $auth = [System.Convert]::ToBase64String([char[]]$C);
+    $headers = @{Authorization = "Basic $auth"}
+  
+   return $headers
+
 }
 
 function Add-githubCollaborator {
@@ -18,3 +19,5 @@ function Add-githubCollaborator {
     Get-GitHubRepository($Repository)
 
 }
+
+
